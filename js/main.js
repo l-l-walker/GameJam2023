@@ -18,8 +18,14 @@ let baby_alive = false;
 
 // resources
 let honey;
-let honey_amount = 20;
+let honey_amount = 3;
 let resource_counter = 0;
+
+
+let player_selector;
+
+// resource menu
+let resource_menu_switch = false;
 
 function preload(){
 
@@ -32,17 +38,18 @@ function setup(){
     player_sprite();
 
     // player overlapping with the resource 'honey'
-    player.overlaps(honey, collect);
+    player.overlapping(honey, collect);
 }
 
 function resource_sprite(){
     honey = new Group();
-    honey.w = 15;
-    honey.h = 15;
+    honey.w = 20;
+    honey.h = 20;
     honey.color = "#fcba03";
     // random spawn
-    honey.x = () => random(0, canvas.w);
-    honey.y = () => random(0, canvas.h);
+    honey.x = () => random(200, canvas.w - 200);
+    honey.y = () => random(100, canvas.h - 100);
+    honey.health = 50;
     honey.amount = honey_amount;
     // want to add resource life and spawn more once the resource reaches a certain amount
 }
@@ -55,19 +62,18 @@ function player_sprite(){
 }
 
 function collect(player, honey){
-    honey.remove();
-    resource_counter += 1;
+    honey.health -= 1;
     honey_amount -= 1;
+    resource_counter += 1;
+    if(honey.health === 0){
+        honey.remove();
+    }
 }
 
 
 function draw(){
     clear();
     background(125);
-
-    // screen text
-    player_resources_txt();
-    available_resources_txt();
 
     // player stuff
     player_movement();
@@ -76,27 +82,60 @@ function draw(){
     // babies
     create_baby();
     baby_follow();
+
+    // player resources
+    player_resources_menu();
+    test_selector();
+}
+
+function test_selector(){
+    if(mouse.pressing()){
+        push();
+        fill("green");
+        // player_selector = new Sprite([
+        //     [mouse_pos_x, mouse_pos_y],
+        //     [mouse.position.x, mouse_pos_y],
+        //     [mouse.position.x, mouse.position.y],
+        //     [mouse_pos_x, mouse.position.y]
+        // ]);
+        quad(
+                mouse_pos_x, mouse_pos_y,               // click position
+                mouse.position.x, mouse_pos_y,          // x axis
+                mouse.position.x, mouse.position.y,     // y axis
+                mouse_pos_x, mouse.position.y           // mouse position
+            );
+        pop();
+    }
 }
 
 // must change, the text looks gross rn
-function player_resources_txt(){
-    push();
-    textSize(30);
-    text(`Player resource:`, 10, 700);
-    fill("#fcba03");
-    square(10, 725, 30); // will change this to the image for honey
-    text(`honey: ${resource_counter}`, 50, 750);
-    pop();
+function player_resources_menu(){
+    if (resource_menu_switch){
+        // menu box
+        push();
+        fill(242, 208, 208, 200);
+        strokeWeight(0);
+        rect(0, 0, 200, canvas.h);
+        pop();
+
+        // text and resource icon
+        push();
+        textSize(20);
+        text(`Player resource:`, 10, 20);
+        text(`honey: ${resource_counter}`, 50, 55);
+        fill("#fcba03");
+        square(10, 40, 20); // will change this to the image for honey
+        pop();
+    }
 }
 
-// must change, the text looks gross rn
-function available_resources_txt(){
-    push();
-    textSize(30);
-    text(`honey present: ${honey_amount}`, 10, 30);
-    pop();
+// key pressed function
+function keyPressed(){
+    if(keyCode === 82){
+        print("show player resource")
+        resource_menu_switch = !resource_menu_switch;
+    }
 }
-
 
 function player_movement(){
     if(mouse.presses()) {
