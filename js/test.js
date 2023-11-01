@@ -32,9 +32,10 @@ function setup(){
 
     //Access the player method in the player class which returns the player object 
     player = currentPlayer.getPlayer();
-
+    print(player);
+    print(honey);
     // player overlapping with the resource 'honey'
-    player.overlapping(honey, resources.collect);
+    player.overlapping(honey, resources.collect(player, honey));
 }
 
 function draw(){
@@ -119,10 +120,3 @@ function baby_follow(){
         }
     }
 }
-
-
-
-
-
-
-
