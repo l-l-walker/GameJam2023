@@ -9,7 +9,6 @@ class Resource
 
     preload()
     {
-        print(this.resource_counter);
     }
     
     setUp()
@@ -19,7 +18,6 @@ class Resource
 
     draw()
     {
-
     }
 
     getHoney()
@@ -42,14 +40,18 @@ class Resource
         this.honey.x = () => random(200, canvas.w - 200);
         this.honey.y = () => random(100, canvas.h - 100);
         this.honey.health = 50;
+        //this.honey.parent = this;
         this.honey.amount = this.honey_amount;
+        for(let thing of this.honey) {
+            thing.nina = this;
+        }
         // want to add resource life and spawn more once the resource reaches a certain amount
     }
 
     collect(player, honey){
         honey.health -= 1;
-        this.honey_amount -= 1;
-        this.resource_counter += 1;
+        honey.nina.honey_amount -= 1;
+        honey.nina.resource_counter += 1;
         if(honey.health === 0){
             honey.remove();
         }
