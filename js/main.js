@@ -10,8 +10,8 @@ let player, honey;
 let resource_menu_switch = false;
 
  //Instantiate Resource and Plater Class 
- let resources = new Resource();
- let currentPlayer = new Player()
+let resources = new Resource();
+let currentPlayer = new Player()
 
 function preload(){
 
@@ -112,9 +112,6 @@ function baby_follow(){
         babies_y = babies.position.y;
 
         // let distance = dist(currentPlayer.player_x, currentPlayer.player_y, babies_x, babies_y);
-
-        
-        
         // else if(distance < 50){
         //     babies.speed = 0;
         // }
@@ -150,6 +147,7 @@ function baby_follow(){
                 print("asjhda");
                 resources.resource_counter += 1;
                 closest_resource.health -= 1;
+                closest_resource.text = closest_resource.health;
                 if(closest_resource.health === 0){
                     closest_resource.remove();
                     // after this part, the baby ship does not go back to the mother ship
