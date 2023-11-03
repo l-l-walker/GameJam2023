@@ -88,41 +88,73 @@ function keyPressed(){
 
 // just trying out the baby stuff 
 function baby_sprite(){
-    babies = new Sprite();
-    babies.h = 5;
-    babies.w = 10;
+    babies = new Sprite(currentPlayer.player_x, currentPlayer.player_y );
+    babies.h = 10;
+    babies.w = 20;
     babies.color = "brown";
     babies.stroke = "blue";
-    baby_follow();
+    babies.health = 0;
 }
 
 function create_baby(){
     if(kb.presses(' ')){
         baby_alive = true;
         baby_sprite();
+        
     }
 }
+
+let resource_arr = [];
 
 function baby_follow(){
     if(baby_alive){
         babies_x = babies.position.x;
         babies_y = babies.position.y;
-        let distance = dist(player_x, player_y, babies_x, babies_y);
 
-        if(distance < 50){
-            babies.speed = 0;
+        // let distance = dist(currentPlayer.player_x, currentPlayer.player_y, babies_x, babies_y);
+
+        
+        
+        // else if(distance < 50){
+        //     babies.speed = 0;
+        // }
+        // else if(distance > 50){
+        //     babies.direction = babies.angleTo(currentPlayer.player); // makes the sprite move to the player
+        //     babies.rotateTo(currentPlayer.player, 5, 0);
+        //     babies.speed = 2;
+        // }
+
+
+        // stuff i have added - bella
+        // the baby ship goes to the nearest resource
+        for(let i = 0; i < resources.honey.length; i++){
+            let resource_dist = dist(resources.honey[i].x, resources.honey[i].y, babies_x, babies_y);
+
+            resource_arr.push({
+                resource: resources.honey[i], 
+                distance: resource_dist
+            });
         }
-        else if(distance > 50){
-            babies.direction = babies.angleTo(player); // makes the sprite move to the player
-            babies.rotateTo(player, 5, 0);
-            babies.speed = 2;
+
+            resource_arr.sort((a, b) => a.distance - b.distance)
+            print(resource_arr);
+        if(resource_arr.length > 3){
+            resource_arr = resource_arr.slice(0, 3);
+        }
+        
+        if(resource_arr.length > 0){
+            let closest_resource = resource_arr[0].resource;
+            babies.moveTo(closest_resource.x, closest_resource.y, 1);
+            babies.rotateTo(closest_resource.x, closest_resource.y, 1, 0);
+            if(babies.overlapping(closest_resource)){
+                print("asjhda");
+                resources.resource_counter += 1;
+                closest_resource.health -= 1;
+                if(closest_resource.health === 0){
+                    closest_resource.remove();
+                    // after this part, the baby ship does not go back to the mother ship
+                }
+            }
         }
     }
 }
-
-
-
-
-
-
-
