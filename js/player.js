@@ -58,7 +58,7 @@ class Player {
                 let x = this.player_x + i * deltaX;
                 let y = this.player_y + i * deltaY;
                 point(x, y);
-                stroke("green");
+                stroke("pink");
                 strokeWeight(3);
             }
             if (d > 0) {

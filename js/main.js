@@ -46,19 +46,24 @@ function setup() {
 function draw() {
     clear();
     background(bg);
-    playerMenu.player_resources_menu();
-
+    // Draw Player and Resource Sprites first
+    resources.honey.draw();
+    currentPlayer.player.draw();
+    
     // player stuff
     currentPlayer.player_movement();
     currentPlayer.player_path();
-
+    
     // babies
     allBabies.create_baby();
     allBabies.baby_follow();
     allBabies.draw();
-
-    // player resources
+    
+    // NOT WORKING selector
     currentPlayer.test_selector();
+
+    // Player Resource menu is drawn last to be on the top layer
+    playerMenu.player_resources_menu();
 }
 
 // key pressed function

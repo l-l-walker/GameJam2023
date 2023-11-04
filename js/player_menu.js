@@ -18,7 +18,6 @@ class Player_Menu {
     // must change, the text looks gross rn
     player_resources_menu() {
         if (this.resource_menu_switch) {
-
             // Menu box
             push();
                 fill(242, 208, 208, 200);
@@ -65,7 +64,7 @@ class Player_Menu {
                 square(210, 740, 50);
                 square(340, 740, 50);
                 square(470, 740, 50);
-                pop();
+            pop();
 
             // Shop
             push();
@@ -82,7 +81,6 @@ class Player_Menu {
                 textSize(30)
                 text(`Buy`, 905, 765);
             pop();
-            print(mouse.position.x, mouse.position.y)
 
             // Dividers
             line(200, 600, 200, 800)

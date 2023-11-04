@@ -35,13 +35,12 @@ class Resource {
         this.honey.x = () => random(10, canvas.w);
         this.honey.y = () => random(10, canvas.h - 250);
         this.honey.health = 50;
-        //this.honey.parent = this;
         this.honey.amount = this.honey_amount;
         for (let thing of this.honey) {
             thing.nina = this;
         }
-        // want to add resource life and spawn more once the resource reaches a certain amount
         this.honey.text = this.honey.health; // added text to the resource
+        // want to add resource life and spawn more once the resource reaches a certain amount
     }
 
     collect(player, honey) {
