@@ -21,7 +21,7 @@ function preload() {
     resources.preload();
     currentPlayer.preload();
     allBabies.preload();
-   // bg = loadImage("./assets/background/bg.png");
+    bg = loadImage("./assets/background/bg.png");
 }
 
 function setup() {
@@ -45,7 +45,7 @@ function setup() {
 
 function draw() {
     clear();
-    background("green");
+    background(bg);
     playerMenu.player_resources_menu();
 
     // player stuff

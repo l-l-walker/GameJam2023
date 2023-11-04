@@ -26,7 +26,7 @@ class Baby {
     }
 
     draw() {
-        print(this.ships)
+        
     }
 
     // just trying out the baby stuff 
@@ -38,11 +38,7 @@ class Baby {
         this.babies.color = "brown";
         this.babies.stroke = "blue";
         this.babies.health = 0;
-
-        for (let i = 0; i < 10; i++) {
-            this.ship = random(this.ships);
-        }
-        this.babies.img = this.ship;
+        this.babies.img = random(this.ship);
     }
 
     create_baby() {
