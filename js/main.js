@@ -6,6 +6,7 @@ let babies_x, babies_y;
 let baby_alive = false;
 
 let player, honey;
+let bg;
 
 
 //Instantiate Resource and Plater Class 
@@ -20,10 +21,12 @@ function preload() {
     resources.preload();
     currentPlayer.preload();
     allBabies.preload();
+   // bg = loadImage("./assets/background/bg.png");
 }
 
 function setup() {
     new Canvas(1000, 800);
+
     //Access the resource_sprite method in the Resource class 
     resources.resource_sprite();
     //Honey
@@ -37,11 +40,12 @@ function setup() {
 
     // player overlapping with the resource 'honey'
     player.overlapping(honey, resources.collect);
+
 }
 
 function draw() {
     clear();
-    background(125);
+    background("green");
     playerMenu.player_resources_menu();
 
     // player stuff
