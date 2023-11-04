@@ -11,18 +11,22 @@ class Baby {
         this.resources = resource;
         this.currentPlayer = currentPlayer;
         this.resourceTransferIterations = 0;
+        this.ships = [];
+        this.ship;
     }
 
     preload() {
-        // for (let i = 0; i < )
+        for (let i = 1; i < 6; i++) {
+            this.ships[i] = loadImage(`assets/spawn_ship/ship${i}.png`)
+        }
     }
 
     setUp() {
-
+        
     }
 
     draw() {
-
+        print(this.ships)
     }
 
     // just trying out the baby stuff 
@@ -34,6 +38,11 @@ class Baby {
         this.babies.color = "brown";
         this.babies.stroke = "blue";
         this.babies.health = 0;
+
+        for (let i = 0; i < 10; i++) {
+            this.ship = random(this.ships);
+        }
+        this.babies.img = this.ship;
     }
 
     create_baby() {
