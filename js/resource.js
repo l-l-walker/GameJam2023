@@ -1,60 +1,54 @@
-class Resource 
-{
-    constructor()
-    {
+class Resource {
+    constructor() {
         this.honey;
         this.honey_amount = 3;
         this.resource_counter = 0;
     }
 
-    preload()
-    {
-    }
-    
-    setUp()
-    {
+    preload() {
 
     }
 
-    draw()
-    {
+    setUp() {
+        
     }
 
-    getHoney()
-    {
-        return this.honey; 
+    draw() {
+
     }
 
-    getResourceCounter()
-    {
+    getHoney() {
+        return this.honey;
+    }
+
+    getResourceCounter() {
         return this.resource_counter;
     }
 
-
-    resource_sprite(){
+    resource_sprite() {
         this.honey = new Group();
         this.honey.w = 30;
         this.honey.h = 30;
         this.honey.color = "#fcba03";
         // random spawn
-        this.honey.x = () => random(200, canvas.w - 200);
-        this.honey.y = () => random(100, canvas.h - 100);
+        this.honey.x = () => random(10, canvas.w);
+        this.honey.y = () => random(10, canvas.h - 250);
         this.honey.health = 50;
         //this.honey.parent = this;
         this.honey.amount = this.honey_amount;
-        for(let thing of this.honey) {
+        for (let thing of this.honey) {
             thing.nina = this;
         }
         // want to add resource life and spawn more once the resource reaches a certain amount
         this.honey.text = this.honey.health; // added text to the resource
     }
 
-    collect(player, honey){
+    collect(player, honey) {
         honey.health -= 1;
         honey.text = honey.health; // text updates
         honey.nina.honey_amount -= 1;
         honey.nina.resource_counter += 1;
-        if(honey.health === 0){
+        if (honey.health === 0) {
             honey.remove();
         }
     }
