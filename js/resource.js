@@ -30,6 +30,7 @@ class Resource {
         this.honey.w = 30;
         this.honey.h = 30;
         this.honey.color = "#fcba03";
+        this.honey.img = "./assets/resources/resource1.png";
         // random spawn
         this.honey.x = () => random(10, canvas.w);
         this.honey.y = () => random(10, canvas.h - 250);

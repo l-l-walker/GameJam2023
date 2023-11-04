@@ -14,7 +14,7 @@ class Baby {
     }
 
     preload() {
-
+        // for (let i = 0; i < )
     }
 
     setUp() {

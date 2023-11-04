@@ -11,7 +11,6 @@ class Player {
     }
 
     preload() {
-
     }
 
     setUp() {
@@ -31,6 +30,8 @@ class Player {
         this.player.h = 20;
         this.player.color = "pink";
         this.player.stroke = "red";
+        // need to change it when player gets upgrade 
+        this.player.img = "./assets/main_ship/bear_phase3.png";
     }
 
     player_movement() {
@@ -39,7 +40,7 @@ class Player {
             this.mouse_pos_y = mouse.position.y;
             this.player_moving = true;
             this.player.moveTo(mouse, 2);       // pos, speed
-            this.player.rotateTo(mouse, 5, 0);  //pos, speed, facing
+            // this.player.rotateTo(mouse, 5, 0);  //pos, speed, facing
         }
     }
 
