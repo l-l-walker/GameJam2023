@@ -119,7 +119,7 @@ class Baby {
 
     goToResource(currentBaby) {
         //If the count is less than 3 
-        if (this.count < 3) {
+        if (this.count < this.resource_arr.length) {
             //Assign the closest_resource object property to the specified count in the resource_arr property object 
             this.closest_resource = this.resource_arr[this.count].resource;
             //Make baby move to the closest resource
