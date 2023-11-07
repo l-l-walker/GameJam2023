@@ -34,6 +34,11 @@ class Player {
         this.player.img = "./assets/main_ship/bear_phase3.png";
     }
 
+
+
+    
+    // Need to change this 
+    // Need to assign to selected sprite
     player_movement() {
         if (mouse.presses()) {
             this.mouse_pos_x = mouse.position.x;
@@ -44,6 +49,8 @@ class Player {
         }
     }
 
+    // Need to change this
+    // Need to assign to selected sprite
     player_path() {
         if (this.player_moving) {
             push();
@@ -68,21 +75,4 @@ class Player {
             pop();
         }
     }
-
-    test_selector() {
-        if (mouse.pressing()) {
-            push();
-            fill("green");
-            quad(
-                this.mouse_pos_x, this.mouse_pos_y,         // click position
-                mouse.position.x, this.mouse_pos_y,         // x axis
-                mouse.position.x, mouse.position.y,         // y axis
-                this.mouse_pos_x, mouse.position.y          // mouse position
-            );
-            pop();
-        }
-    }
-
-
-
 }

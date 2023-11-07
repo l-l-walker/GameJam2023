@@ -32,8 +32,8 @@ class Resource {
         this.honey.color = "#fcba03";
         this.honey.img = "./assets/resources/resource1.png";
         // random spawn
-        this.honey.x = () => random(10, canvas.w);
-        this.honey.y = () => random(10, canvas.h - 250);
+        this.honey.x = () => random(50, canvas.w);
+        this.honey.y = () => random(50, canvas.h - 250);
         this.honey.health = 50;
         this.honey.amount = this.honey_amount;
         for (let thing of this.honey) {

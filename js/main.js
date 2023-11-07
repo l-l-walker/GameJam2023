@@ -14,13 +14,16 @@ let resources = new Resource();
 let currentPlayer = new Player();
 let allBabies = new Baby(resources, currentPlayer);
 let playerMenu = new Player_Menu(resources);
+let playerSelector = new Selector(currentPlayer);
 
 
 function preload() {
-
+    // Classes
     resources.preload();
     currentPlayer.preload();
     allBabies.preload();
+    
+    // Background Image
     bg = loadImage("./assets/background/bg.png");
 }
 
@@ -29,41 +32,39 @@ function setup() {
 
     //Access the resource_sprite method in the Resource class 
     resources.resource_sprite();
-    //Honey
     honey = resources.getHoney();
 
     //Call the player_sprite method  in the player class 
     currentPlayer.player_sprite();
-
-    //Access the player method in the player class which returns the player object 
     player = currentPlayer.getPlayer();
 
     // player overlapping with the resource 'honey'
     player.overlapping(honey, resources.collect);
-
 }
 
 function draw() {
     clear();
+    // Assign Background
     background(bg);
+
     // Draw Player and Resource Sprites first
     resources.honey.draw();
     currentPlayer.player.draw();
     
-    // player stuff
+    // Player class functions
     currentPlayer.player_movement();
     currentPlayer.player_path();
     
-    // babies
+    // Baby class functions
     allBabies.create_baby();
     allBabies.baby_follow();
     allBabies.draw();
     
-    // NOT WORKING selector
-    currentPlayer.test_selector();
-
     // Player Resource menu is drawn last to be on the top layer
     playerMenu.player_resources_menu();
+
+    // Selector
+    playerSelector.test_selector();
 }
 
 // key pressed function
@@ -73,4 +74,3 @@ function keyPressed() {
         playerMenu.resource_menu_switch = !playerMenu.resource_menu_switch;
     }
 }
-
