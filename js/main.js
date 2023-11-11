@@ -40,6 +40,12 @@ function setup() {
 
     // player overlapping with the resource 'honey'
     player.overlapping(honey, resources.collect);
+
+    // player menu
+    playerMenu.changePlayerImgBtn();
+
+    // Player movement
+    currentPlayer.playerMovementBtn();
 }
 
 function draw() {
@@ -50,21 +56,36 @@ function draw() {
     // Draw Player and Resource Sprites first
     resources.honey.draw();
     currentPlayer.player.draw();
-    
+
+    // Resource functions
+    // resources.checkLife();
+
     // Player class functions
-    currentPlayer.player_movement();
-    currentPlayer.player_path();
-    
+    if (currentPlayer.playerMovementSwitch) {
+        currentPlayer.player.scale = 1;
+        if (mouseIsPressed) {
+            // Draw player path continuously when clicking
+            currentPlayer.player_movement();
+        } else {
+            // Draw player path only when hovering
+            currentPlayer.player_path();
+        }
+    }
+    else {
+        currentPlayer.player.scale = 0.7;
+        currentPlayer.player_path();
+    }
+
     // Baby class functions
     allBabies.create_baby();
     allBabies.baby_follow();
-    allBabies.draw();
+    // allBabies.draw();
     
     // Player Resource menu is drawn last to be on the top layer
     playerMenu.player_resources_menu();
 
     // Selector
-    playerSelector.test_selector();
+    // playerSelector.test_selector();
 }
 
 // key pressed function
@@ -72,5 +93,10 @@ function keyPressed() {
     if (keyCode === 69) {
         print("show player resource")
         playerMenu.resource_menu_switch = !playerMenu.resource_menu_switch;
+    }
+    
+    if (keyCode === 49) {
+        print("player movement", currentPlayer.playerMovementSwitch)
+        currentPlayer.playerMovementSwitch = !currentPlayer.playerMovementSwitch;
     }
 }

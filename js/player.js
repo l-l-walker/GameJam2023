@@ -8,9 +8,14 @@ class Player {
         this.mouse_pos_y;
         this.player_moving = false;
         this.player_selector;
+
+        // Player Movememnt switch
+        this.playerMovementSwitch = false;
+        this.movementButton;
     }
 
     preload() {
+
     }
 
     setUp() {
@@ -18,7 +23,6 @@ class Player {
     }
 
     draw() {
-
     }
 
     getPlayer() {
@@ -34,23 +38,26 @@ class Player {
         this.player.img = "./assets/main_ship/bear_phase3.png";
     }
 
+    playerMovementBtn() {
+        this.movementButton = createButton("1 Player Movement");
+        this.movementButton.position(10, 810);
+        this.movementButton.mousePressed(this.togglePlayerMovement);
+    }
 
+    togglePlayerMovement() {
+        currentPlayer.playerMovementSwitch = !currentPlayer.playerMovementSwitch;
+    }
 
-    
-    // Need to change this 
-    // Need to assign to selected sprite
     player_movement() {
-        if (mouse.presses()) {
+        if (mouse.presses() && this.playerMovementSwitch) {
             this.mouse_pos_x = mouse.position.x;
             this.mouse_pos_y = mouse.position.y;
             this.player_moving = true;
-            this.player.moveTo(mouse, 2);       // pos, speed
+            this.player.moveTo(mouse, 4);       // pos, speed
             // this.player.rotateTo(mouse, 5, 0);  //pos, speed, facing
         }
     }
 
-    // Need to change this
-    // Need to assign to selected sprite
     player_path() {
         if (this.player_moving) {
             push();

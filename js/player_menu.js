@@ -2,6 +2,7 @@ class Player_Menu {
     constructor(resource) {
         this.resource_menu_switch = false;
         this.resources = resource;
+        this.playerFormBtn;
     }
 
     preload() {
@@ -9,7 +10,15 @@ class Player_Menu {
     }
 
     setUp() {
+        
+    }
 
+    changePlayerImgBtn() {
+        this.playerFormBtn = createButton("Change Player Form");
+        this.playerFormBtn.position(10, 840);
+        this.playerFormBtn.mousePressed(() => {
+            print("ADJKASD");
+        });
     }
 
     draw() {
@@ -43,7 +52,7 @@ class Player_Menu {
                 text(`Resources:`, 210, 630);
                 // Resource Text
                 text(`honey: ${this.resources.resource_counter}`, 240, 660);
-                text(`flowers: ${this.resources.resource_counter}`, 240, 695);
+                text(`flowers: `, 240, 695);
                 // Resource icons
                 fill("#fcba03");
                 square(210, 640, 20); // will change this to the image for honey
